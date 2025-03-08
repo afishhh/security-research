@@ -1,3 +1,9 @@
+# Fork information
+
+I use this fork to play around with `zentool`, I also made some extra tools to make this easier
+see [pocs/cpus/entrysign/zentool](https://github.com/afishhh/security-research/tree/zenasm/pocs/cpus/entrysign/zentool)
+for more information.
+
 # Security Research
 
 This project hosts security advisories and their accompanying

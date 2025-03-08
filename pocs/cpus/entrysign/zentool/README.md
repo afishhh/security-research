@@ -1,3 +1,33 @@
+# Fork information
+
+This fork introduces a very simple assembler for microcode in the `zenasm` subdirectory.
+
+It lets you write code like this:
+```asm
+; fpatan instruction
+.match 0x0cc0
+.quad
+        add rax, rax, 1337
+        add rax, rax, 1000
+        ; quad padded with 2 nops
+        ; sequence word defaults to next quad relative
+.quad
+        sub rbx, rbx, 10
+        add rax, rax, rbx
+        ; quad padded with 2 nops
+.seq rfe ; set sequence word to "return from emulation"
+```
+
+and then compile it like this:
+`uasm --resign -t ../template.bin ./hello.asm -o hello.bin`
+
+This command performs the equivalent of `zentool --edit`ing the file but is
+infinitely more convenient, the `--resign` flag also lets you automatically
+`zentool resign`.
+You can then load the resulting patch using `zentool load` as usual.
+
+The tool is written in Rust and uses C ffi to access zentool functions.
+
 # Zentool -- AMD Zen Microcode Manipulation Utility
 
 This package provides a suite of tools for analyzing, manipulating and
