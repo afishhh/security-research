@@ -187,7 +187,9 @@ impl Assembler {
 
     fn process_line(&mut self, mut line: &str) -> Result<()> {
         line = line.trim_start();
-        line = &line[..line.rfind(';').unwrap_or(line.len())];
+        while let Some(pos) = line.rfind(';') {
+            line = &line[..pos];
+        }
         line = line.trim_end();
 
         if line.is_empty() {
